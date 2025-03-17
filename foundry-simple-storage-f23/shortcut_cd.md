@@ -9,3 +9,5 @@
 
 *** TO CONVERT FROM HEX CODE TO DECIMAL NUMBERS ***
     cast --to-base <Hex_Code> dec
+
+    SHORTCUT COMMIT
