@@ -2,16 +2,14 @@
     forge script script/DeploySimpleStorage.s.sol --rpc-url http://127.0.0.1:8545 --account defaultKey --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --broadcast -vvvv
 
 *** TO DEPLOY A CONTRACT TO ALCHEMY USING FORGE W/ AN UENCRYPTED PRIVATE KEY: ***
-    
+
     1. Load .env data
-   
-    ```
-    source .env
-    ```
+    
+    ``` source .env```
     
     2. Run forge script cmd to Deploy
    
-    ```
+   
     forge script script/DeploySimpleStorage.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast -vvvv
     ```
 
