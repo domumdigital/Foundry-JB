@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-// Note: The AggregatorV3Interface might be at a different location than what was in the video!
+//@dev Build by Domum Digital. Est. 2021.
+
+// Note: The AggregatorV3Interface link below is mapped in our foundry.toml file
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./PriceConverter.sol";
 
-error NotOwner();
+// Proper error handling includes <contract_name>__<error_name>
+error FundMe__NotOwner();
 
 contract FundMe {
     using PriceConverter for uint256;
@@ -35,7 +38,7 @@ contract FundMe {
 
     modifier onlyOwner() {
         // require(msg.sender == owner);
-        if (msg.sender != i_owner) revert NotOwner();
+        if (msg.sender != i_owner) revert FundMe__NotOwner();
         _;
     }
 
