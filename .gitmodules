@@ -7,3 +7,6 @@
 [submodule "foundry-fund-me-jb/lib/chainlink-brownie-contracts"]
 	path = foundry-fund-me-jb/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "forge-init-template/lib/forge-std"]
+	path = forge-init-template/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
