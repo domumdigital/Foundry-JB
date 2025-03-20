@@ -6,13 +6,17 @@ pragma solidity ^0.8.18;
 
 import {Test, console} from "../lib/forge-std/src/Test.sol";
 import {FundMe} from "../src/FundMe.sol";
+import {DeployFundMe} from "../script/DeployFundMe.s.sol";
 
 // Foundry automatically runs the "setUp" function before each test function.
 contract FundMeTest is Test {
     FundMe fundMe;
+    DeployFundMe deployFundMe;
 
     function setUp() external {
-        fundMe = new FundMe();
+        //fundMe = new FundMe(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        deployFundMe = new DeployFundMe();
+        fundMe = deployFundMe.run(); // DeployFundMe contract is a script that deploys FundMe contract.
     }
 
     // Be very specific when naming your test functions to easily identify what went wrong.

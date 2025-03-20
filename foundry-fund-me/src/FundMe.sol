@@ -3,7 +3,7 @@ pragma solidity ^0.8.18;
 
 //@dev Build by Domum Digital. Est. 2021.
 
-// Note: The AggregatorV3Interface link below is mapped in our foundry.toml file
+// Note: The AggregatorV3Interface.sol link below is mapped in our foundry.toml file
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 import {PriceConverter} from "./PriceConverter.sol";
 
@@ -16,24 +16,27 @@ contract FundMe {
     mapping(address => uint256) public addressToAmountFunded;
     address[] public funders;
 
-    // Could we make this constant?  /* hint: no! We should make it immutable! */
+    // Immutable so it cannot be changed.
     address public /* immutable */ i_owner;
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
+    AggregatorV3Interface private s_priceFeed;
 
-    constructor() {
+    // The "address priceFeed" input is the address of the Chainlink Price Feed which MUST be entered to deploy the contract.
+    // This acts like a "key" which needs to be input to deploy the contract.
+    constructor(address priceFeed) {
         i_owner = msg.sender;
+        s_priceFeed = AggregatorV3Interface(priceFeed);
     }
 
     function fund() public payable {
-        require(msg.value.getConversionRate() >= MINIMUM_USD, "You need to spend more ETH!");
+        require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "You need to spend more ETH!");
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         addressToAmountFunded[msg.sender] += msg.value;
         funders.push(msg.sender);
     }
 
     function getVersion() public view returns (uint256) {
-        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
-        return priceFeed.version();
+        return s_priceFeed.version();
     }
 
     modifier onlyOwner() {
