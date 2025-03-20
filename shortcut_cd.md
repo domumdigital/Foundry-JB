@@ -33,3 +33,6 @@ to load the Chainlink Brownie Contracts.
 
 *** TO CONVERT FROM HEX CODE TO DECIMAL NUMBERS ***
     ```cast --to-base <Hex_Code> dec```
+
+*** TO TEST A SPECIFIC CONTRACT AND FUNCTIONS ON A FORKED RPC URL ***
+    ```forge test --mc FundMeTest -vvv --fork-url $SEPOLIA_RPC_URL ```
