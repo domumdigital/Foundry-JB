@@ -2,6 +2,13 @@
    
    ```forge --init```
 
+   or
+
+    ```forge init```
+
+to load all files. Then,
+
+```chainlink brownie```
 
 *** TO DEPLOY A CONTRACT TO ANVIL USING FORGE W/ ENCRYPTED PRIVATE KEY: ***
     ```forge script script/DeploySimpleStorage.s.sol --rpc-url http://127.0.0.1:8545 --account defaultKey --sender 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --broadcast -vvvv```
