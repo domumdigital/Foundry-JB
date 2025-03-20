@@ -12,11 +12,14 @@ import {FundMe} from "../src/FundMe.sol";
 // If we are on a live network chain, deploy the real Price Feed addresses
 contract HelperConfig is Script {
     struct NetworkConfig {
-        address PriceFeed;
+        address priceFeed;
     }
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
-        return NetworkConfig(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        NetworkConfig memory sepoliaConfig = NetworkConfig({
+            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
+        });
+        return sepoliaConfig;
         // Sepolia ETH Price Feed Address
     }
 
